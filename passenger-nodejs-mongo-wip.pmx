@@ -9,7 +9,7 @@ images:
   source: mongo:latest
   category: Database
   type: Default
-- name: phusion_passenger-nodejs
+- name: phusion-passenger-nodejs
   source: phusion/passenger-nodejs:latest
   category: App
   type: Default
@@ -17,7 +17,7 @@ images:
   - host_port: '8080'
     container_port: '80'
     proto: TCP
-- name: monokrome_gitreceive
+- name: monokrome-gitreceive
   source: monokrome/gitreceive:latest
   category: Deployment
   type: Default
