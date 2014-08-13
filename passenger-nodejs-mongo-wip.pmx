@@ -1,0 +1,23 @@
+---
+name: passenger-nodejs-mongo-wip
+description: ''
+keywords: ''
+type: NodeJS
+documentation: ''
+images:
+- name: mongo
+  source: mongo:latest
+  category: Database
+  type: Default
+- name: phusion_passenger-nodejs
+  source: phusion/passenger-nodejs:latest
+  category: App
+  type: Default
+  ports:
+  - host_port: '8080'
+    container_port: '80'
+    proto: TCP
+- name: monokrome_gitreceive
+  source: monokrome/gitreceive:latest
+  category: Deployment
+  type: Default
