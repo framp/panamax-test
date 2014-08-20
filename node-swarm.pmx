@@ -5,11 +5,11 @@ keywords: ''
 type: NodeJS
 documentation: ''
 images:
-- name: dockerfile_mongodb
+- name: mongodb
   source: dockerfile/mongodb:latest
   category: databases
   type: Default
-- name: neyric_nodejs-grunt-bower-pm2
+- name: first-app
   source: neyric/nodejs-grunt-bower-pm2:latest
   category: apps
   type: Default
@@ -18,16 +18,16 @@ images:
     container_port: '3000'
     proto: TCP
   links:
-  - service: dockerfile_mongodb
+  - service: mongodb
     alias: mongodb
   volumes:
   - host_path: "/volumes/apps"
     container_path: "/var/apps"
-- name: shepmaster_nginx-template-image
+- name: nginx
   source: shepmaster/nginx-template-image:latest
   category: router
   type: Default
-- name: neyric_nodejs-grunt-bower-pm2_1
+- name: second-app
   source: neyric/nodejs-grunt-bower-pm2:latest
   category: apps
   type: Default
@@ -41,15 +41,14 @@ images:
   volumes:
   - host_path: "/volumes/apps/"
     container_path: "/var/apps"
-- name: nginx
+- name: files
   source: nginx:latest
   category: apps
   type: Default
-- name: nginx_1
-  source: nginx:latest
-  category: apps
-  type: Default
-- name: nginx_2
-  source: nginx:latest
-  category: apps
-  type: Default
+  ports:
+  - host_port: '15303'
+    container_port: '3000'
+    proto: TCP
+  volumes:
+  - host_path: "/volumes/apps/"
+    container_path: "/var/apps"
