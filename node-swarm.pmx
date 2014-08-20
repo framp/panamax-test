@@ -1,0 +1,55 @@
+---
+name: node-swarm
+description: ''
+keywords: ''
+type: NodeJS
+documentation: ''
+images:
+- name: dockerfile_mongodb
+  source: dockerfile/mongodb:latest
+  category: databases
+  type: Default
+- name: neyric_nodejs-grunt-bower-pm2
+  source: neyric/nodejs-grunt-bower-pm2:latest
+  category: apps
+  type: Default
+  ports:
+  - host_port: '15301'
+    container_port: '3000'
+    proto: TCP
+  links:
+  - service: dockerfile_mongodb
+    alias: mongodb
+  volumes:
+  - host_path: "/volumes/apps"
+    container_path: "/var/apps"
+- name: shepmaster_nginx-template-image
+  source: shepmaster/nginx-template-image:latest
+  category: router
+  type: Default
+- name: neyric_nodejs-grunt-bower-pm2_1
+  source: neyric/nodejs-grunt-bower-pm2:latest
+  category: apps
+  type: Default
+  ports:
+  - host_port: '15302'
+    container_port: '3000'
+    proto: TCP
+  links:
+  - service: dockerfile_mongodb
+    alias: mongodb
+  volumes:
+  - host_path: "/volumes/apps/"
+    container_path: "/var/apps"
+- name: nginx
+  source: nginx:latest
+  category: apps
+  type: Default
+- name: nginx_1
+  source: nginx:latest
+  category: apps
+  type: Default
+- name: nginx_2
+  source: nginx:latest
+  category: apps
+  type: Default
